@@ -1,0 +1,12 @@
+#!/bin/bash
+while IFS= read -r LINE; do
+    if [[ "${LINE}" =~ ^Date:\ .* ]]; then
+        DATE=${LINE#Date: }
+        # convert to the current timezone (defined by TZ)
+        DATE=$(date -d "${DATE}")
+        printf '%s\n' "Date: ${DATE}"
+    else
+        printf '%s\n' "${LINE}"
+    fi
+done
+

@@ -1,0 +1,198 @@
+# account setup
+set editor= "nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
+set folder = ~/mail/gmail"
+set from = ben@bencode.net
+set header_cache =~/mail/gmail/cache/headers
+set mail_check = 10
+set mbox_type = Maildir
+set menu_scroll
+set message_cachedir =~/mail/gmail/cache/bodies
+set new_mail_command = "notify-send 'new mail'"
+set pager_stop
+set postponed ="+[Gmail]/Drafts"
+set realname ="Ben Simmonds"
+set record ="+[Gmail]/Sent Mail"
+set signature ="~/.config/neomutt/signature"
+set smtp_pass =`pass show gmail | head -n 1`
+set smtp_url =smtp://ben@bencode.net@smtp.gmail.com:587/"
+set sort =threads
+set sort_aux =reverse-last-date-received
+set sort_re
+set spoolfile =+Inbox
+set ssl_force_tls =yes
+set ssl_starttls =yes
+set timeout =0
+set trash ="+[Gmail]/Trash"
+set use_from =yes
+unmailboxes *
+mailboxes =Inbox
+mailboxes ="[Gmail]/All Mail"
+mailboxes ="[Gmail]/Drafts"
+mailboxes ="[Gmail]/Starred"
+mailboxes ="[Gmail]/Trash"
+mailboxes ="[Gmail]/Sent Mail"
+
+
+# General stuff
+set text_flowed
+unset mark_old
+set delete           # don't ask, just do
+unset confirmappend  # don't ask, just do!
+set quit             # don't ask, just do!!
+
+# bindings
+bind index,pager g noop
+bind index,pager gg noop
+bind index,pager M noop
+bind index,pager C noop
+bind index,pager i noop
+bind index \Cf noop
+bind index - collapse-thread
+bind index _ collapse-all
+bind pager <down> next-line"
+bind pager <up> previous-line #scroll inside the message rather than the index
+
+set sort     = threads
+set sort_aux = reverse-last-date-received
+set sort_re
+bind index - collapse-thread
+bind index _ collapse-all
+folder-hook . "exec collapse-all"
+macro   index,pager ">"     "<next-thread><previous-entry>"
+macro   index,pager "<"     "<previous-thread><next-entry>"
+
+# look and feel
+set menu_scroll
+set smart_wrap
+set tilde
+unset markers
+
+# composing
+set editor="nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
+unset mime_forward
+
+# headers and dates
+ignore *                               # first, ignore all headers
+unignore from: to: cc: date: subject:  # then, show only these
+hdr_order from: to: cc: date: subject: # and in this order
+
+bind index gg first-entry
+macro index o "<shell-escape>mbsync -Va<enter>" "run mailsync"
+macro index,pager gi "<change-folder>=Inbox<enter>" "go to inbox"
+macro index,pager Mi "<save-message>=Inbox<enter>" "move mail to inbox"
+macro index,pager Ci "<copy-message>=Inbox<enter>" "copy mail to inbox"
+macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "go to inbox"
+macro index,pager Ma "<save-message>=[Gmail]/All Mail<enter>" "move mail to inbox"
+macro index,pager Ca "<copy-message>=[Gmail]/All Mail<enter>" "copy mail to inbox"
+macro index,pager gs "<change-folder>=[Gmail]/Sent Mail<enter>" "go to sent"
+macro index,pager Ms "<save-message>=[Gmail]/Sent Mail<enter>" "move mail to sent"
+macro index,pager Cs "<copy-message>=[Gmail]/Sent Mail<enter>" "copy mail to sent"
+macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
+macro index,pager Md "<save-message>=Drafts<enter>" "move mail to drafts"
+macro index,pager Cd "<copy-message>=Drafts<enter>" "copy mail to drafts"
+macro index,pager gt "<change-folder>=Trash<enter>" "go to trash"
+macro index,pager Mt "<save-message>=Trash<enter>" "move mail to trash"
+macro index,pager Ct "<copy-message>=Trash<enter>" "copy mail to trash"
+
+set mailcap_path 	= ~/.config/neomutt/mailcap
+set date_format		="%H:%M   %a %d %b   (%Y)"
+set display_filter 	= "~/bin/email_dates" # format times as local
+set index_format	="%5C   %zs %?X?A& ?    %-40.40s    %-20.20F   (%e/%E) %>  %D  "
+set query_command 	= "abook --mutt-query '%s'"
+set rfc2047_parameters = yes
+set sleep_time 		= 0		# Pause 0 seconds for informational messages
+set markers 		= no	# Disables the `+` displayed at line wraps
+set wait_key 		= no	# mutt won't ask "press key to continue"
+set fast_reply		= yes # skip to compose when replying
+set fcc_attach		# save attachments with the body
+set forward_format 	= "Fwd: %s"	# format of subject when forwarding
+set forward_quote	# include message in forwards
+set reverse_name	# reply as whomever it was to
+set include			= yes # include message in replies
+auto_view text/html	# automatically show html (mailcap uses w3m)
+auto_view application/pgp-encrypted
+alternative_order text/plain text/enriched text/html
+
+# General rebindings
+bind attach <return> view-mailcap
+bind attach l view-mailcap
+bind editor <space> noop
+bind index G last-entry
+bind index gg first-entry
+bind pager,attach h exit
+bind pager j next-line
+bind pager k previous-line
+bind pager l view-attachments
+bind index D delete-message
+bind index U undelete-message
+bind index L limit
+bind index h noop
+bind index l display-message
+bind browser h goto-parent
+bind browser l select-entry
+bind pager,browser gg top-page
+
+# General rebindings
+bind attach <return> view-mailcap
+bind attach l view-mailcap
+bind pager,browser G bottom-page
+bind index,pager,browser d half-down
+bind index,pager,browser u half-up
+bind index,pager S sync-mailbox
+bind index,pager R group-reply
+bind index \031 previous-undeleted	# Mouse wheel
+bind index \005 next-undeleted		# Mouse wheel
+bind pager \031 previous-line		# Mouse wheel
+bind pager \005 next-line		# Mouse wheel
+bind editor <Tab> complete-query
+
+macro index,pager a "|abook --add-email\n" 'add sender to abook'
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+macro index O "<shell-escape>mbsync -Va<enter>" "run mbsync to sync all mail"
+macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search term to find with notmuch: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+macro index A "<limit>all\n" "show all messages (undo limit)"
+macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<enter><shell-escape>firefox ~/.cache/mutt/mail.html<enter>"
+
+# Default index colors:
+color index white default '.*'
+color index_author red default '.*'
+color index_number green default
+color index_subject cyan default '.*'
+color index_date blue default
+
+# New mail is boldened:
+color index brightwhite black "~N"
+color index_author brightred black "~N"
+color index_subject brightcyan black "~N"
+
+# Deleted mail is dulled
+color index brightblack default "~D"
+
+# Regex highlighting:
+color header blue default ".*"
+color header brightmagenta default "^(From)"
+color header brightcyan default "^(Subject)"
+color header brightwhite default "^(CC|BCC)"
+color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body brightblue default "^# \.*" # Headings as bold blue
+color body brightcyan default "^## \.*" # Subheadings as bold cyan
+color body brightgreen default "^### \.*" # Subsubheadings as bold green
+color body white default "^(\t| )*(-|\\*) \.*" # List items as white
+color body brightcyan default "[;:][-o][)/(|]" # emoticons
+color body brightcyan default "[;:][)(|]" # emoticons
+color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightwhite default "^gpg: "
+color body brightwhite red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+source ~/.config/neomutt/colours
+# vim: filetype=neomuttrc
+
