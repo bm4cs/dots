@@ -1,0 +1,8 @@
+image/*; sxiv -a -b %s; copiousoutput
+text/plain; $EDITOR %s
+text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+audio/*; vlc %s
+video/*; vlc %s
+application/pdf; mupdf %s
+application/pgp-encrypted; gpg -d '%s'; copiousoutput
+

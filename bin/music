@@ -1,0 +1,5 @@
+#!/bin/bash
+
+[ ! -s ~/.config/mpd/pid ] && mpd
+st -n "music" -e "ncmpcpp"
+

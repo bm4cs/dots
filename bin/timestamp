@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo -n "$(date +"%F %T")" | xclip -selection clipboard
+echo "in clipboard"

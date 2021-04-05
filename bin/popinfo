@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+date1=`date +"%H:%M %a %d %b"`
+mem1=`free -h | awk '/^Mem:/ {print $3 "/" $2}'`
+cpu1=`sensors | awk '/^Core 0:/ {print $3}'`
+#gpu1=`nvidia-smi -q -d temperature | grep "GPU Current" | tr -dc '0-9';echo "°C"`
+upsy=`uptime -p`
+
+echo "Time	: $date1"
+echo ""
+echo "Memory	: $mem1"
+echo "CPU 	: $cpu1"
+#echo "GPU	: $gpu1"
+echo "Uptime	: $upsy"
+

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+mupdf ~/books/Vim/practical_vim.pdf
+

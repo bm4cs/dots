@@ -1,0 +1,13 @@
+conky.config = {
+	background = false,
+	out_to_console = true,
+	total_run_times = 1,
+	use_spacer = none
+}
+
+conky.text = [[
+^fg(green)${time %a %b %d %H:%M:%S}
+^fg(grey)Up: ^fg()$uptime
+]]
+
+
