@@ -40,4 +40,13 @@ alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 Use the `dots` alias, and not the default `git` command.
 
 
+# Dags
+
+## neovim
+
+Before `:PlugInstall` some dependencies:
+
+- `node` for coc
+- `yarn` for prettier
+- `pip3` and the `neovim` python module, for denite
 

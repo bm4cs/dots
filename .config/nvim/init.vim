@@ -22,7 +22,7 @@ Plug 'tpope/vim-commentary' "smart commenter
 Plug 'shougo/denite.nvim' "file jumper
 Plug 'mzlogin/vim-markdown-toc' "contents generator
 Plug 'junegunn/vim-easy-align' "code neatener
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} "autocomplete
+Plug 'neoclide/coc.nvim', { 'branch': 'release' } "autocomplete
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } "golang
 Plug 'morhetz/gruvbox' "colorscheme
 Plug 'ryanoasis/vim-devicons' "file type icons
