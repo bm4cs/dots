@@ -96,5 +96,7 @@ function extract {
 }
 
 # start graphical server if i3 not already running
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+if [ -x "$(command -v dwm)" ]; then
+    [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+fi
 
