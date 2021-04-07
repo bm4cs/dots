@@ -1,6 +1,10 @@
 export ZSH="/home/ben/.oh-my-zsh"
 
-#ZSH_THEME="bullet-train"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+POWERLEVEL9K_MODE="nerdfont-complete"
 
 #BULLETTRAIN_PROMPT_ORDER=(
 #  time
@@ -56,6 +60,8 @@ export ZSH="/home/ben/.oh-my-zsh"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+DEFAULT_USER=$(whoami)
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -63,7 +69,7 @@ export ZSH="/home/ben/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  fzf
+  #fzf
   zsh-autosuggestions
   colored-man-pages
   golang
@@ -73,8 +79,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-eval "$(starship init zsh)"
-source $HOME/.oh-my-zsh/plugins/calc/calc.plugin.zsh/calc.plugin.zsh
 
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
@@ -84,5 +88,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 [[ -e ~/.bash_aliases ]] && emulate sh -c 'source ~/.bash_aliases'
 
-hackersascii | lolcat
+#hackersascii | lolcat
+if [ -x "$(command -v neofetch)" ]; then
+    neofetch
+fi
 
