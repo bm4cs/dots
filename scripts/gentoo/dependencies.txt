@@ -1,4 +1,4 @@
-#X Server configuration
+#Xorg configuration
 x11-libs/libX11
 x11-base/xorg-drivers
 x11-base/xorg-server
@@ -19,9 +19,10 @@ x11-apps/xset
 media-gfx/feh
 
 #misc
-#app-editors/neovim
+app-editors/neovim
 sys-process/htop
 media-sound/alsa-utils
+app-misc/neofetch
 
 #fonts
 media-fonts/fontawesome
