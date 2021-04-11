@@ -21,12 +21,14 @@ Clone as a bare repo (i.e without a `.git` subdir):
 
 ```
 git clone --bare git@github.com:bm4cs/dots-home.git $HOME/.dots
+alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+dots checkout
 ```
 
 After clone, disable showing untracked files, else this will show everything in $HOME:
 
 ```
-dots dots --local status.showUntrackedFiles no
+dots config --local status.showUntrackedFiles no
 ```
 
 ## Usage

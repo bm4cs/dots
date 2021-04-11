@@ -1,0 +1,72 @@
+[user]
+	name = Ben Simmonds
+	email = ben@bencode.net
+	autocrlf = true
+
+[color]
+	ui = auto
+
+[alias]
+	alias = config --get-regexp '^alias.*' # list available aliases
+	
+	# add and commit
+	a = add
+	aa = add --all
+	ac = !git add . && git commit -am
+	ap = add -p
+	c = commit --verbose
+	ca = commit -a --verbose
+	cm = commit -m
+	cam = commit -a -m
+	m = commit --amend --verbose
+	uncommit = reset --soft HEAD~1
+	
+	# branching
+	ba = branch -a
+	bd = branch -d
+	bD = branch -D
+	branches = branch --all
+	branchrename = branch --move
+	branchesdiffed = !git branch | grep -i "indiff"
+	branchesundiffed = !git branch | grep -v -i "indiff"
+	cleanmerged = !git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d # remove merged branches
+	co = checkout
+	cob = checkout -b
+	wipelocal = checkout .
+	
+	# diff
+	d = diff
+	ds = diff --stat
+	dc = diff --cached
+	f = fetch -p
+	
+	# remote
+	p = push
+	pr = pull --rebase
+	pushitgood = push -u origin --all
+	rao = remote add origin
+	
+	# rebase
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbs = rebase --skip
+	
+	# log
+	st = status -sb
+	plog = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
+	tlog = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	outgoing = log --pretty=oneline --abbrev-commit --graph @{u}..
+	incoming = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
+	rank = shortlog -sn --no-merges
+	winning = shortlog --summary --numbered --email
+	totalcommits = !git log --all --pretty=oneline | wc -l
+	commitslastmonth = !git log --author=\"`git config user.name`\" --before={`date "+%Y-%m-01"`} --after={`date --date=\"$(date +%Y-%m-1) -1 month\" \"+%Y-%m-01\"`} --reverse --pretty=format:\"%cd %h  %s\" --date=short
+	commitsthismonth = !git log --author=\"`git config user.name`\" --before=now --after={`date "+%Y-%m-1"`} --reverse --pretty=format:\"%cd %h  %s\" --date=short
+	commitstoday = !git log --author=\"`git config user.name`\" --since=\"6am\"
+	rank = shortlog -sn --no-merges
+
+[pull]
+	rebase = false
+
