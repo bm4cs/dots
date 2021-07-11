@@ -1,19 +1,19 @@
-# dots-home
+# dots
 
-Most of the configuration files for programs I like to us.
+Configuration for the _daily driver_ programs I use.
 
-Mostly programs that optimise my computer usage workflows, as a software developer, security researcher and terminal nerd.
+These consist of programs that optimise my specific computer usage workflows as a software developer, security researcher and terminal nerd.
 
 My setup is quite opionated:
 
-* Its minimalist and elistist.
-* I don't use a desktop environment (DE).
-* I use a tiler (tiling window manager) called `dwm`.
-* Suckless programs where possible.
-* I use Gentoo and Arch Linux.
-* Vim key bindings everywhere.
-* neovim is my editor.
-* Many esoteric key bindings (thx to ErgoDox EZ).
+* its minimalist and elistist
+* use gentoo, arch and debian
+* no desktop environment (DE)
+* uses a tiler (tiling window manager) called `dwm`
+* suckless programs where possible
+* vim key bindings everywhere
+* neovim is my editor
+* esoteric key bindings (thx to ErgoDox EZ)
 
 ## Setup
 
@@ -41,8 +41,9 @@ alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 
 Use the `dots` alias, and not the default `git` command.
 
+Carefully stage and commit individual files as needed.
 
-# Dags
+# Gotchas
 
 ## neovim
 
