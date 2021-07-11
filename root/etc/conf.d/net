@@ -1,0 +1,6 @@
+
+# prefer wpa_supplicant over wireless-tools
+modules="wpa_supplicant"
+
+config_wlp40s0="dhcp"
+
