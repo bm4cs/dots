@@ -1,0 +1,39 @@
+# base
+zsh
+build-essential
+xserver-xorg-video-amdgpu
+firmware-amd-graphics
+xorg
+sudo
+git
+ssh
+network-manager
+rsync
+neovim
+tmux
+manpages-dev
+pulseaudio
+pulseaudio-utils
+pulsemixer
+unzip
+tree
+fonts-noto
+feh
+fuse
+
+# bloat
+snapd
+firefox-esr
+docker.io
+
+# nnn build deps
+pkg-config
+libncursesw5-dev
+libreadline-dev
+
+# bleeding edge
+# nodejs - sudo snap install node --classic
+# nnn - make install
+# dotnet - sudo snap install dotnet-sdk --classic --channel=5.0
+# chrome - sudo apt install ./google-chrome-stable_current_amd64.deb
+# vscode - sudo apt install ./code_1.58.0-1625728071_amd64.deb
