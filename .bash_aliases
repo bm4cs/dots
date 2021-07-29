@@ -12,6 +12,7 @@ alias ll="ls -lah"
 alias ls="ls -hN --color=auto --group-directories-first"
 alias mkd="mkdir -pv"
 alias mutt="neomutt"
+alias N="sudo -E nnn -dH"
 alias p="sudo pacman"
 alias rank='sudo reflector --verbose -l 200 -p http --sort rate --save /etc/pacman.d/mirrorlist'
 alias s="sudo systemctl"
