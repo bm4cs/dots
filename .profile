@@ -26,7 +26,7 @@ if [ -x "$(command -v dotnet)" ]; then
 	export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
 fi
 
-export PATH="$PATH:$GOPATH/bin:$HOME/.dotnet:$HOME/.cargo/bin"
+export PATH="$PATH:$GOPATH/bin:$HOME/.dotnet:$HOME/.cargo/bin:/snap/bin"
 
 # make qt apps look good on i3 hours wasted: 3
 export QT_STYLE_OVERRIDE=adwaita

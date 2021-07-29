@@ -1,9 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH="/home/ben/.oh-my-zsh"
-
-
-
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 POWERLEVEL9K_MODE="nerdfont-complete"
@@ -81,7 +84,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
 
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
