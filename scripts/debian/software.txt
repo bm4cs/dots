@@ -20,11 +20,34 @@ tree
 fonts-noto
 feh
 fuse
+openvpn
 
 # bloat
 snapd
 firefox-esr
 docker.io
+mpv
+mpd
+ncmpcpp
+ffmpeg
+neofetch
+mupdf
+pdfgrep
+
+# kvm - usermod -aG and newgrp to libvirt group after installs
+qemu-system
+libvirt-clients
+libvirt-daemon-system
+virt-manager
+
+
+# st build deps
+libx11-dev
+libxft-dev
+libfreetype6-dev
+libfontconfig1-dev
+xclip
+
 
 # nnn build deps
 pkg-config
