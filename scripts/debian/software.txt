@@ -1,9 +1,6 @@
 # base
 zsh
 build-essential
-xserver-xorg-video-amdgpu
-firmware-amd-graphics
-xorg
 sudo
 git
 ssh
@@ -12,6 +9,7 @@ rsync
 neovim
 tmux
 manpages-dev
+pass
 pulseaudio
 pulseaudio-utils
 pulsemixer
@@ -21,6 +19,21 @@ fonts-noto
 feh
 fuse
 openvpn
+
+# graphical
+xserver-xorg-video-amdgpu
+firmware-amd-graphics
+xorg
+
+# mail
+neomutt
+isync
+msmtp
+lynx
+
+# notifications
+dunst
+libnotify-bin
 
 # bloat
 snapd
@@ -40,14 +53,12 @@ libvirt-clients
 libvirt-daemon-system
 virt-manager
 
-
 # st build deps
 libx11-dev
 libxft-dev
 libfreetype6-dev
 libfontconfig1-dev
 xclip
-
 
 # nnn build deps
 pkg-config
