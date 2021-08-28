@@ -4,48 +4,58 @@ build-essential
 sudo
 git
 ssh
-network-manager
 rsync
 neovim
 tmux
 manpages-dev
-pass
-pulseaudio
-pulseaudio-utils
-pulsemixer
 unzip
 tree
-fonts-noto
-feh
 fuse
+neofetch
+gnupg
+
+# networking
+network-manager
 openvpn
 
 # graphical
 xserver-xorg-video-amdgpu
 firmware-amd-graphics
 xorg
+maim
+sxiv
+xautolock
+feh
+fonts-noto
 
 # mail
 neomutt
 isync
 msmtp
 lynx
+pass
 
 # notifications
 dunst
 libnotify-bin
 
-# bloat
-snapd
-firefox-esr
-docker.io
+# media
+pulseaudio
+pulseaudio-utils
+pulsemixer
 mpv
 mpd
 ncmpcpp
 ffmpeg
-neofetch
 mupdf
 pdfgrep
+
+# web
+firefox-esr
+
+# packaging
+snapd
+docker.io
 
 # kvm - usermod -aG and newgrp to libvirt group after installs
 qemu-system
@@ -53,11 +63,13 @@ libvirt-clients
 libvirt-daemon-system
 virt-manager
 
-# st build deps
+# suckless build deps
 libx11-dev
 libxft-dev
 libfreetype6-dev
 libfontconfig1-dev
+libxinerama-dev
+libxrandr-dev
 xclip
 
 # nnn build deps
