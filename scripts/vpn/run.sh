@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo openvpn --config usa_los_angeles_3.ovpn --auth-user-pass ~/.ssh/vpn
+sudo openvpn --config usa_seattle.ovpn --auth-user-pass ~/.ssh/vpn

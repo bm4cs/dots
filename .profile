@@ -1,13 +1,16 @@
 # if not running interactively, gtfo
 [[ $- != *i* ]] && return
 
-# if running bash
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
 if [ -d "$HOME/.local/bin" ] ; then
   PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "/usr/local/go/bin" ] ; then
+  PATH="/usr/local/go/bin:$PATH"
 fi
 
 export EDITOR="nvim"
@@ -18,12 +21,11 @@ export READER="mupdf"
 export FILE="nnn"
 export GOBIN=$HOME/go/bin
 export GOPATH=$HOME/go
-export DOTNET_ROOT=$HOME/.dotnet
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 if [ -x "$(command -v dotnet)" ]; then
-	export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
+	export MSBuildSDKsPath=/snap/dotnet-sdk/current/sdk/$(dotnet --version)/Sdks
 fi
 
 export PATH="$PATH:$GOPATH/bin:$HOME/.dotnet:$HOME/.cargo/bin:/snap/bin"
