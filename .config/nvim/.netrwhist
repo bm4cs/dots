@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/ben'
+let g:netrw_dirhist_6='/home/ben/git/bencode.net'
 let g:netrw_dirhist_5='/home/ben/git/bencode.net/content/posts'
 let g:netrw_dirhist_4='/home/ben/git/bencode.net/content'
 let g:netrw_dirhist_3='/home/ben/git/bencode.net'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_1='/home/ben/git/papers/2019-reveng-bindiff-paper'
 let g:netrw_dirhist_0='/etc/portage/package.use'
 let g:netrw_dirhist_9='/etc/portage'
 let g:netrw_dirhist_8='/etc/portage/package.use'
-let g:netrw_dirhist_7='/home/ben/.oh-my-zsh'
-let g:netrw_dirhist_6='/home/ben/git/bencode.net/content/posts'
