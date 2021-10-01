@@ -21,14 +21,9 @@ export READER="mupdf"
 export FILE="nnn"
 export GOBIN=$HOME/go/bin
 export GOPATH=$HOME/go
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-if [ -x "$(command -v dotnet)" ]; then
-	export MSBuildSDKsPath=/snap/dotnet-sdk/current/sdk/$(dotnet --version)/Sdks
-fi
-
-export PATH="$PATH:$GOPATH/bin:$HOME/.dotnet:$HOME/.cargo/bin:/snap/bin"
+export PATH="$PATH:$GOPATH/bin:$:$HOME/.cargo/bin:/snap/bin"
 
 # make qt apps look good on i3 hours wasted: 3
 export QT_STYLE_OVERRIDE=adwaita
