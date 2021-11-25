@@ -11,24 +11,32 @@
 
 " load plugins with vimplug
 call plug#begin('~/.config/nvim/plugged')
+Plug 'nvim-lua/plenary.nvim' "for telescope
+Plug 'nvim-telescope/telescope.nvim' "fuzzy finder
 Plug 'ntpeters/vim-better-whitespace' "trailing whitespace
 Plug 'easymotion/vim-easymotion' "precise motioning
 Plug 'vim-airline/vim-airline' "status line
 Plug 'mhinz/vim-signify' "git gutter
 Plug 'tpope/vim-fugitive' "git integration
-"Plug 'jiangmiao/auto-pairs' "auto clode brackets
+Plug 'jiangmiao/auto-pairs' "auto clode brackets
 Plug 'tpope/vim-surround' "wrap text
 Plug 'tpope/vim-commentary' "smart commenter
-Plug 'shougo/denite.nvim' "file jumper
 Plug 'mzlogin/vim-markdown-toc' "contents generator
 Plug 'junegunn/vim-easy-align' "code neatener
-Plug 'neoclide/coc.nvim', { 'branch': 'release' } "autocomplete
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } "golang
 Plug 'morhetz/gruvbox' "colorscheme
 Plug 'ryanoasis/vim-devicons' "file type icons
 Plug 'mcchrish/nnn.vim' "file explorer
 Plug 'ap/vim-css-color' "colorise hashcodes
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' } "code formatter
+Plug 'neovim/nvim-lspconfig' "lsp client
+Plug 'hrsh7th/cmp-nvim-lsp' "lsp autocomplete
+Plug 'hrsh7th/cmp-buffer' "lsp autocomplete
+Plug 'hrsh7th/cmp-path' "lsp autocomplete
+Plug 'hrsh7th/cmp-cmdline' "lsp autocomplete
+Plug 'hrsh7th/nvim-cmp' "lsp autocomplete
+Plug 'hrsh7th/cmp-vsnip' "vsnip
+Plug 'hrsh7th/vim-vsnip' "vsnip
 call plug#end()
 
 
@@ -73,6 +81,7 @@ set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.git,.svn,.hg
 set wildignore+=*~,*.swp,*.tmp
+set wildignore+=**/node_modules/*
 
 
 
@@ -151,196 +160,14 @@ imap <leader>d <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Denite
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"   ;         - Browser currently open buffers
-"   <leader>f - Browse list of files in current directory
-"   <leader>g - Search current directory for occurences of given term and close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
-nmap ; :Denite buffer<CR>
-nmap <leader>f :Denite -start-filter file/rec<CR>
-nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
-nnoremap <leader>j :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
-
-" Define mappings while in denite window
-"   <CR>        - Opens currently selected file
-"   q or <Esc>  - Quit Denite window
-"   d           - Delete currenly selected file
-"   p           - Preview currently selected file
-"   <C-o> or i  - Switch to insert mode inside of filter prompt
-"   <C-t>       - Open currently selected file in a new tab
-"   <C-v>       - Open currently selected file a vertical split
-"   <C-h>       - Open currently selected file in a horizontal split
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-o>
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <C-t>
-  \ denite#do_map('do_action', 'tabopen')
-  nnoremap <silent><buffer><expr> <C-v>
-  \ denite#do_map('do_action', 'vsplit')
-  nnoremap <silent><buffer><expr> <C-h>
-  \ denite#do_map('do_action', 'split')
-endfunction
-
-try
-    " Interactive grep search
-    call denite#custom#var('grep', 'min_interactive_pattern', 2)
-    call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-    call denite#custom#source('grep', 'args', ['', '', '!'])
-
-    " Ripgrep command on grep source
-	call denite#custom#var('grep', {
-		\ 'command': ['rg'],
-		\ 'default_opts': ['-i', '--vimgrep', '--no-heading'],
-		\ 'recursive_opts': [],
-		\ 'pattern_opt': ['--regexp'],
-		\ 'separator': ['--'],
-		\ 'final_opts': [],
-		\ })
-
-	call denite#custom#var('file/rec', 'command',
-	    \ ['rg', '--hidden', '--files', '--glob', '!.git', '--color', 'never'])
-
-    call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
-    call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ [ '.git/', '.ropeproject/', '__pycache__/*', '*.pyc', 'node_modules/',
-      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/', '*.png'])
-
-    " Remove date from buffer list
-    call denite#custom#var('buffer', 'date_format', '')
-    
-    let s:denite_options = {'default' : {
-    \ 'auto_resize': 1,
-    \ 'prompt': 'λ:',
-    \ 'direction': 'rightbelow',
-    \ 'winminheight': '10',
-    \ 'highlight_mode_insert': 'Visual',
-    \ 'highlight_mode_normal': 'Visual',
-    \ 'prompt_highlight': 'Function',
-    \ 'highlight_matched_char': 'Function',
-    \ 'highlight_matched_range': 'Normal'
-    \ }}
-    
-    " Loop through denite options and enable them
-    function! s:profile(opts) abort
-      for l:fname in keys(a:opts)
-        for l:dopt in keys(a:opts[l:fname])
-          call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-        endfor
-      endfor
-    endfunction
-    
-    call s:profile(s:denite_options)
-catch
-    echo 'Denite not installed. It should work after running :PlugInstall'
-endtry
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin coc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" if hidden is not set, TextEdit might fail.
-set hidden
-" Better display for messages
-set cmdheight=2
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use U to show documentation in preview window
-nnoremap <silent> U :call <SID>show_documentation()<CR>
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin NERDTree
+" Plugin telescope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" nnn.vim has replaced NERDTree for me
-
-" " Toggle NERDTree on/off
-" nmap <leader>n :NERDTreeToggle<CR>
-" " Opens current file location in NERDTree
-" nmap <leader>f :NERDTreeFind<CR>
-" " PageDown
-" noremap <Space> <PageDown>
-" " PageUp
-" noremap - <PageUp>
-
-"let g:NERDTreeShowHidden = 1 "hidden files
-"let g:NERDTreeMinimalUI = 1 " remove bookmarks and help text
-""let g:NERDTreeDirArrowExpandable = '⬏' "custom icons for expandable
-""let g:NERDTreeDirArrowCollapsible = '⬎' "custom icons for expandable
-"let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$'] "ignore list
-
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -405,3 +232,79 @@ autocmd FileType go nmap <leader>t  <Plug>(go-test)
 
 let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin lspconfig
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+lua << EOF
+require'lspconfig'.gopls.setup{}
+EOF
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin nvim-cmp (autocompletion)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set completeopt=menu,menuone,noselect
+
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      end,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+  }
+EOF
