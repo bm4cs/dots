@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
 export ZSH="/home/ben/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
@@ -92,6 +95,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 [[ -e ~/.bash_aliases ]] && emulate sh -c 'source ~/.bash_aliases'
+
+eval "$(mcfly init zsh)" #ctrl-r shell history drop-in
 
 #hackersascii | lolcat
 if [ -x "$(command -v neofetch)" ]; then

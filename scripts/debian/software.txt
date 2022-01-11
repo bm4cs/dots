@@ -1,6 +1,10 @@
 # base
 zsh
 build-essential
+autoconf
+pkgconfig
+libtool
+locales
 sudo
 git
 ssh
