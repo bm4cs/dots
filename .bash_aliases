@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# general
 alias calcurse="calcurse -D ~/.config/calcurse"
 alias diff="diff --color=auto"
 alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
@@ -22,3 +23,7 @@ alias vimdiff="nvim -d"
 alias x="sxiv -ft *"
 alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
 alias yta="yt -x -f bestaudio/best"
+
+# programming
+alias rust-analyzer="rustup run nightly rust-analyzer"
+
