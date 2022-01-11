@@ -37,6 +37,7 @@ Plug 'hrsh7th/cmp-cmdline' "lsp autocomplete
 Plug 'hrsh7th/nvim-cmp' "lsp autocomplete
 Plug 'hrsh7th/cmp-vsnip' "vsnip
 Plug 'hrsh7th/vim-vsnip' "vsnip
+Plug 'rust-lang/rust.vim' "rust
 call plug#end()
 
 
@@ -239,6 +240,16 @@ let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debu
 
 lua << EOF
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.rls.setup{}
+-- require'lspconfig'.rls.setup{
+--   settings = {
+--     rust = {
+--       unstable_features = true,
+--       build_on_save = false,
+--       all_features = true,
+--     },
+--   },
+-- }
 EOF
 
 
@@ -305,6 +316,10 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+  }
+
+  require('lspconfig')['rls'].setup {
     capabilities = capabilities
   }
 EOF
