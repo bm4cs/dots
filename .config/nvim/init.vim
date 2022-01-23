@@ -9,42 +9,63 @@
 " ·▀▀▀▀ ▀▀  █▪▀▀▀ ▀▀▀▀
 
 
-" load plugins with vimplug
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGINS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
-Plug 'nvim-lua/plenary.nvim' "for telescope
-Plug 'nvim-telescope/telescope.nvim' "fuzzy finder
+
+" general enhancements
 Plug 'ntpeters/vim-better-whitespace' "trailing whitespace
-Plug 'easymotion/vim-easymotion' "precise motioning
-Plug 'vim-airline/vim-airline' "status line
-Plug 'mhinz/vim-signify' "git gutter
-Plug 'tpope/vim-fugitive' "git integration
-Plug 'jiangmiao/auto-pairs' "auto clode brackets
+Plug 'justinmk/vim-sneak' "precise motioning
+Plug 'editorconfig/editorconfig-vim' "cross editor coding styles
 Plug 'tpope/vim-surround' "wrap text
 Plug 'tpope/vim-commentary' "smart commenter
-Plug 'mzlogin/vim-markdown-toc' "contents generator
-Plug 'junegunn/vim-easy-align' "code neatener
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } "golang
-Plug 'morhetz/gruvbox' "colorscheme
-Plug 'ryanoasis/vim-devicons' "file type icons
 Plug 'mcchrish/nnn.vim' "file explorer
-Plug 'ap/vim-css-color' "colorise hashcodes
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' } "code formatter
-Plug 'neovim/nvim-lspconfig' "lsp client
-Plug 'hrsh7th/cmp-nvim-lsp' "lsp autocomplete
-Plug 'hrsh7th/cmp-buffer' "lsp autocomplete
-Plug 'hrsh7th/cmp-path' "lsp autocomplete
-Plug 'hrsh7th/cmp-cmdline' "lsp autocomplete
-Plug 'hrsh7th/nvim-cmp' "lsp autocomplete
-Plug 'hrsh7th/cmp-vsnip' "vsnip
-Plug 'hrsh7th/vim-vsnip' "vsnip
-Plug 'rust-lang/rust.vim' "rust
+"Plug 'jiangmiao/auto-pairs' "auto clode brackets
+"Plug 'nvim-lua/popup.nvim' "popup api
+
+" gui enhancements
+Plug 'vim-airline/vim-airline' "status line
+Plug 'morhetz/gruvbox' "colorscheme
+Plug 'machakann/vim-highlightedyank' "pop yanks
+Plug 'andymass/vim-matchup' "extends % lang aware
+Plug 'ap/vim-css-color' "colorise hashcodes
+Plug 'ryanoasis/vim-devicons' "file type icons
+
+" fuzzy finder
+Plug 'nvim-telescope/telescope.nvim' "fuzzy finder
+Plug 'nvim-lua/plenary.nvim' "for telescope
+
+" git
+Plug 'airblade/vim-rooter' "changes working dir to project root
+Plug 'mhinz/vim-signify' "git gutter
+Plug 'tpope/vim-fugitive' "git integration
+
+" syntactic language supports
+Plug 'rust-lang/rust.vim'
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+" semantic language support (sharksforarms/neovim-rust)
+Plug 'neovim/nvim-lspconfig' "common lsp configs
+Plug 'hrsh7th/nvim-cmp' "autocompletion framework
+Plug 'hrsh7th/cmp-nvim-lsp' "cmp lsp completion
+Plug 'hrsh7th/cmp-buffer' "cmp editor completion
+Plug 'hrsh7th/cmp-path' "cmp path completion
+Plug 'hrsh7th/cmp-cmdline' "cmp cmdline completion
+Plug 'hrsh7th/cmp-vsnip' "cmp snippet completion
+Plug 'hrsh7th/vim-vsnip' "snippet engine
+Plug 'simrat39/rust-tools.nvim' "extra functionality over rust analyzer
+
 call plug#end()
 
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
+" GENERAL
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible "drop some legacy compatibility in favour of new things
 filetype on "file specific goodness
@@ -85,9 +106,8 @@ set wildignore+=*~,*.swp,*.tmp
 set wildignore+=**/node_modules/*
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Text, tab and indents
+" TEXT, TABS AND INDENTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 set expandtab "expand <Tab> to spaces in Insert mode
 set tabstop=4 "number of spaces a <Tab> in the text stands for
@@ -98,33 +118,34 @@ set smartindent "do clever autoindenting
 set wrap "wrap long lines
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Files, backups and undos
+" FILES, BACKUPS AND UNDOS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 set noswapfile "don't use a swap file for this buffer
 set nobackup "don't write a backup file before overwriting a file
 set nowb "don't write a backup file before overwriting a file
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors and fonts
+" COLORS AND FONTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "set background=dark "editor theme
-
 "set termguicolors "enable true color
 syntax enable "syntax highlighting
 colorscheme gruvbox "default color scheme
 set t_Co=256 "the number of colors the terminal supports
 let $TERM="st-256color"
 "set term=st-256color "what terminal type to use
-au BufNewFile,BufRead *.adoc set filetype=asciidoc
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Keyboard mappings
+" EXPLICIT FILE TYPING
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.adoc set filetype=asciidoc
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" KEYBOARD MAPPINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " never arrows in vim,  break the addiction today!
@@ -156,15 +177,14 @@ imap <leader>d <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Keys vim-easy-align
+" VIM-EASY-ALIGN
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin telescope
+" TELESCOPE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -172,11 +192,9 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin airline
+" AIRLINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 try
-
 let g:airline_extensions = ['branch', 'hunks', 'coc']
 let g:airline_section_z = airline#section#create(['linenr'])
 let g:airline_skip_empty_sections = 1
@@ -191,19 +209,15 @@ let g:airline_exclude_preview = 1
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 let g:airline_theme='gruvbox'
-
 let g:airline#extensions#hunks#enabled=0
-
 catch
   echo 'Airline not installed. It should work after running :PlugInstall'
 endtry
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin vim-go
+" VIM-GO
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:go_def_mode='gopls'
 let g:go_def_mapping_enabled = 0 "let lsp/coc take care of this
 
@@ -228,16 +242,14 @@ autocmd FileType go nmap <leader>t  <Plug>(go-test)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin nnn.vim
+" NNN.VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin lspconfig
+" LSPCONFIG
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
 lua << EOF
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.rls.setup{}
@@ -253,73 +265,133 @@ require'lspconfig'.rls.setup{}
 EOF
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin nvim-cmp (autocompletion)
+" RUST-TOOLS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set completeopt=menu,menuone,noselect
+" source: sharksforarms/neovim-rust
+" Configure LSP through rust-tools.nvim plugin.
+" rust-tools will configure and enable certain LSP features for us.
+" See https://github.com/simrat39/rust-tools.nvim#configuration
 
 lua <<EOF
-  -- Setup nvim-cmp.
-  local cmp = require'cmp'
 
-  cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
-      end,
+-- nvim_lsp object
+local nvim_lsp = require'lspconfig'
+
+local opts = {
+    tools = {
+        autoSetHints = true,
+        hover_with_actions = true,
+        runnables = {
+            use_telescope = true
+        },
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
     },
-    mapping = {
-      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        -- on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        }
     },
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'luasnip' }, -- For luasnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
+}
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-
-  -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['gopls'].setup {
-    capabilities = capabilities
-  }
-
-  require('lspconfig')['rls'].setup {
-    capabilities = capabilities
-  }
+require('rust-tools').setup(opts)
 EOF
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NVIM-LSP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+
+" quick-fix
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NVIM-CMP (AUTOCOMPLETION)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" source: sharksforarms/neovim-rust
+" Set completeopt to have a better completion experience :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
+" Setup Completion
+" See https://github.com/hrsh7th/nvim-cmp#basic-configuration
+lua <<EOF
+local cmp = require'cmp'
+cmp.setup({
+  snippet = {
+    expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
+  },
+
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
+})
+EOF
+
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=300
+" Show diagnostic popup on cursor hover
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
+
