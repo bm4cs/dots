@@ -3,6 +3,9 @@
 	email = ben@bencode.net
 	autocrlf = true
 
+[init]
+    defaultbranch = main
+
 [color]
 	ui = auto
 

@@ -10,7 +10,7 @@ set message_cachedir =~/mail/gmail/cache/bodies
 set new_mail_command = "notify-send 'new mail'"
 set pager_stop
 set postponed ="+[Gmail]/Drafts"
-set realname ="Ben Simmonds"
+set realname ="Benjamin Simmonds"
 set record ="+[Gmail]/Sent Mail"
 set signature ="~/.config/neomutt/signature"
 set smtp_pass =`pass show gmail | head -n 1`

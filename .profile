@@ -1,14 +1,10 @@
 # if not running interactively, gtfo
 [[ $- != *i* ]] && return
 
-# if running bash
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
-fi
+export PATH="$PATH:$GOPATH/bin:$:$HOME/.cargo/bin:/snap/bin"
 
-if [ -d "$HOME/.local/bin" ] ; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
@@ -16,17 +12,13 @@ export TERMINAL="st"
 export BROWSER="firefox"
 export READER="mupdf"
 export FILE="nnn"
-export GOBIN=$HOME/go/bin
-export GOPATH=$HOME/go
-export DOTNET_ROOT=$HOME/.dotnet
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-if [ -x "$(command -v dotnet)" ]; then
-	export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
-fi
-
-export PATH="$PATH:$GOPATH/bin:$HOME/.dotnet:$HOME/.cargo/bin"
+# langs
+source "$HOME/.cargo/env"
+export GOBIN=$HOME/go/bin
+export GOPATH=$HOME/go
+[ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
 
 # make qt apps look good on i3 hours wasted: 3
 export QT_STYLE_OVERRIDE=adwaita
@@ -40,23 +32,14 @@ fi
 
 n ()
 {
-    # Block nesting of nnn in subshells
+    # block nesting of nnn in subshells
     if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
         echo "nnn is already running"
         return
     fi
 
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    # the default behaviour is to cd on quit (nnn checks if nnn_tmpfile is set)
     export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
 
     nnn "$@"
 
@@ -96,7 +79,7 @@ function extract {
     fi
 }
 
-# start graphical server if i3 not already running
+# start dwm if not already running
 if [ -x "$(command -v dwm)" ]; then
     [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 fi

@@ -1,30 +1,80 @@
 # base
 zsh
 build-essential
-xserver-xorg-video-amdgpu
-firmware-amd-graphics
-xorg
+autoconf
+pkgconfig
+libtool
+locales
 sudo
 git
 ssh
-network-manager
 rsync
 neovim
 tmux
 manpages-dev
+unzip
+tree
+fuse
+neofetch
+gnupg
+
+# networking
+network-manager
+openvpn
+
+# graphical
+xserver-xorg-video-amdgpu
+firmware-amd-graphics
+xorg
+maim
+sxiv
+xautolock
+feh
+fonts-noto
+
+# mail
+neomutt
+isync
+msmtp
+lynx
+pass
+
+# notifications
+dunst
+libnotify-bin
+
+# media
 pulseaudio
 pulseaudio-utils
 pulsemixer
-unzip
-tree
-fonts-noto
-feh
-fuse
+mpv
+mpd
+ncmpcpp
+ffmpeg
+mupdf
+pdfgrep
 
-# bloat
-snapd
+# web
 firefox-esr
+
+# packaging
+snapd
 docker.io
+
+# kvm - usermod -aG and newgrp to libvirt group after installs
+qemu-system
+libvirt-clients
+libvirt-daemon-system
+virt-manager
+
+# suckless build deps
+libx11-dev
+libxft-dev
+libfreetype6-dev
+libfontconfig1-dev
+libxinerama-dev
+libxrandr-dev
+xclip
 
 # nnn build deps
 pkg-config
