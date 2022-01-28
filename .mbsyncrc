@@ -13,17 +13,13 @@ Account gmail
 MaildirStore gmail-local
 Subfolders Verbatim
 Path ~/mail/gmail/
-Inbox ~/mail/gmail/Inbox
+Inbox ~/mail/gmail/inbox
 
 Channel gmail
 Master :gmail-remote:
 Slave :gmail-local:
-# Exclude everything under the internal [Gmail] folder, except the interesting folders
-Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail" "[Gmail]/Trash"
-# Or include everything
-#Patterns *
-# Automatically create missing mailboxes, both locally and on the server
 Create Both
-# Save the synchronization state files in the relevant directory
+Expunge Both
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Trash" !"[Gmail]/Bin" !"[Gmail]/Spam" !"pollution" !"uni" !"shopping" !"jobs" !"elbow" !"d.start"
 SyncState *
 MaxMessages 200
