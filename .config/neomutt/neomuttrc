@@ -1,36 +1,35 @@
 # account setup
 set editor= "nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
-set folder = ~/mail/gmail"
-set from = ben@bencode.net
-set header_cache =~/mail/gmail/cache/headers
+set folder = ~/mail/fastmail"
+set from = ben@bencode.io
+set header_cache =~/mail/fastmail/cache/headers
 set mail_check = 10
 set mbox_type = Maildir
 set menu_scroll
-set message_cachedir =~/mail/gmail/cache/bodies
+set message_cachedir =~/mail/fastmail/cache/bodies
 set new_mail_command = "notify-send 'new mail'"
 set pager_stop
-set postponed ="+[Gmail]/Drafts"
+set postponed ="Drafts"
 set realname ="Benjamin Simmonds"
-set record ="+[Gmail]/Sent Mail"
+set record ="Sent"
 set signature ="~/.config/neomutt/signature"
-set smtp_pass =`pass show gmail | head -n 1`
-set smtp_url =smtp://ben@bencode.net@smtp.gmail.com:587/"
+set smtp_pass =`pass show fastmail | head -n 1`
+set smtp_url =smtp://ben@bencode.io@smtp.fastmail.com:587/"
 set sort =threads
 set sort_aux =reverse-last-date-received
 set sort_re
-set spoolfile =+Inbox
+set spoolfile =+inbox
 set ssl_force_tls =yes
 set ssl_starttls =yes
 set timeout =0
-set trash ="+[Gmail]/Trash"
+set trash ="Trash"
 set use_from =yes
 unmailboxes *
-mailboxes =Inbox
-mailboxes ="[Gmail]/All Mail"
-mailboxes ="[Gmail]/Drafts"
-mailboxes ="[Gmail]/Starred"
-mailboxes ="[Gmail]/Trash"
-mailboxes ="[Gmail]/Sent Mail"
+mailboxes =inbox
+mailboxes ="Archive"
+mailboxes ="Drafts"
+mailboxes ="Trash"
+mailboxes ="Sent"
 
 
 # General stuff
@@ -78,15 +77,15 @@ hdr_order from: to: cc: date: subject: # and in this order
 
 bind index gg first-entry
 macro index o "<shell-escape>mbsync -Va<enter>" "run mailsync"
-macro index,pager gi "<change-folder>=Inbox<enter>" "go to inbox"
-macro index,pager Mi "<save-message>=Inbox<enter>" "move mail to inbox"
-macro index,pager Ci "<copy-message>=Inbox<enter>" "copy mail to inbox"
-macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "go to inbox"
-macro index,pager Ma "<save-message>=[Gmail]/All Mail<enter>" "move mail to inbox"
-macro index,pager Ca "<copy-message>=[Gmail]/All Mail<enter>" "copy mail to inbox"
-macro index,pager gs "<change-folder>=[Gmail]/Sent Mail<enter>" "go to sent"
-macro index,pager Ms "<save-message>=[Gmail]/Sent Mail<enter>" "move mail to sent"
-macro index,pager Cs "<copy-message>=[Gmail]/Sent Mail<enter>" "copy mail to sent"
+macro index,pager gi "<change-folder>=inbox<enter>" "go to inbox"
+macro index,pager Mi "<save-message>=inbox<enter>" "move mail to inbox"
+macro index,pager Ci "<copy-message>=inbox<enter>" "copy mail to inbox"
+macro index,pager ga "<change-folder>=Archive<enter>" "go to inbox"
+macro index,pager Ma "<save-message>=Archive<enter>" "move mail to archive"
+macro index,pager Ca "<copy-message>=Archive<enter>" "copy mail to archive"
+macro index,pager gs "<change-folder>=Sent<enter>" "go to sent"
+macro index,pager Ms "<save-message>=Sent<enter>" "move mail to sent"
+macro index,pager Cs "<copy-message>=Sent<enter>" "copy mail to sent"
 macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
 macro index,pager Md "<save-message>=Drafts<enter>" "move mail to drafts"
 macro index,pager Cd "<copy-message>=Drafts<enter>" "copy mail to drafts"

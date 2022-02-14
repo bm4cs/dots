@@ -1,25 +1,25 @@
-IMAPAccount gmail
-Host imap.gmail.com
+IMAPAccount fastmail
+Host imap.fastmail.com
 Port 993
-User ben@bencode.net
-PassCmd "pass show gmail | head -n 1"
+User ben@bencode.io
+PassCmd "pass show fastmail | head -n 1"
 SSLType IMAPS
 SSLVersion TLSv1.2
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-IMAPStore gmail-remote
-Account gmail
+IMAPStore fastmail-remote
+Account fastmail
 
-MaildirStore gmail-local
+MaildirStore fastmail-local
 Subfolders Verbatim
-Path ~/mail/gmail/
-Inbox ~/mail/gmail/inbox
+Path ~/mail/fastmail/
+Inbox ~/mail/fastmail/inbox
 
-Channel gmail
-Master :gmail-remote:
-Slave :gmail-local:
+Channel fastmail
+Master :fastmail-remote:
+Slave :fastmail-local:
 Create Both
 Expunge Both
-Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred" !"[Gmail]/Trash" !"[Gmail]/Bin" !"[Gmail]/Spam" !"pollution" !"uni" !"shopping" !"jobs" !"elbow" !"d.start"
+Patterns * !"jobs" !"elbow" !"d.start"
 SyncState *
 MaxMessages 200
