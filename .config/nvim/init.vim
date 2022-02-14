@@ -162,9 +162,8 @@ inoremap <Right> <nop>
 cmap w!! w !sudo tee %
 
 " insert timestamp
-nmap <leader>d i<C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>
-imap <leader>d <C-R>=strftime("%Y-%m-%d %H:%M:%S")<CR>
-
+nmap <leader>d i<C-R>=strftime("%Y-%m-%d %H:%M:%S+11:00")<CR><Esc>
+imap <leader>d <C-R>=strftime("%Y-%m-%d %H:%M:%S+11:00")<CR>
 
 
 
