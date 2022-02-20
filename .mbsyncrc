@@ -7,19 +7,116 @@ SSLType IMAPS
 SSLVersion TLSv1.2
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-IMAPStore fastmail-remote
+
+# THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
+# - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
+#   SPECIFICATION OF AN IMAP ACCOUNT)
+# - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
+
+# REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
+
+IMAPStore fmail-remote
 Account fastmail
 
-MaildirStore fastmail-local
+# LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p [maildir])
+
+MaildirStore fmail-local
 Subfolders Verbatim
 Path ~/mail/fastmail/
-Inbox ~/mail/fastmail/inbox
+Inbox ~/mail/fastmail/INBOX
 
 Channel fastmail
-Master :fastmail-remote:
-Slave :fastmail-local:
-Create Both
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns *
 Expunge Both
-Patterns * !"jobs" !"elbow" !"d.start"
+CopyArrivalDate yes
+Sync All
+Create Slave
+#MaxMessages 200
 SyncState *
-MaxMessages 200
+
+
+
+# CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
+#
+# CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
+# FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
+#
+# 1 "*" TO MATCH EVERYTHING
+# 2 "!DIR" TO EXCLUDE "DIR"
+# 3 "DIR" TO MATCH DIR
+
+
+Channel fmail-inbox
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns *
+Create Slave
+Sync All
+Expunge Both
+SyncState *
+
+Channel fmail-sent
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns "Sent"
+Create Both
+Sync All
+Expunge Both
+SyncState *
+
+Channel fmail-spam
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns "Spam"
+Create Slave
+Sync All
+Expunge Both
+SyncState *
+
+Channel fmail-drafts
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns "Drafts"
+Create Slave
+Sync All
+Expunge Both
+SyncState *
+
+Channel fmail-notes
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns "Notes"
+Create Slave
+Sync All
+Expunge Both
+SyncState *
+
+Channel fmail-trash
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns "Trash"
+Create Slave
+Sync All
+Expunge Both
+SyncState *
+
+Channel fmail-archive
+Master :fmail-remote:
+Slave :fmail-local:
+Patterns "Arc*"
+Create Slave
+Sync All
+Expunge Both
+SyncState *
+
+Group fma
+Channel fmail-inbox
+Channel fmail-spam
+Channel fmail-drafts
+Channel fmail-notes
+Channel fmail-trash
+Channel fmail-sent
+Channel fmail-archive
+
