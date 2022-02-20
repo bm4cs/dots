@@ -7,7 +7,7 @@ set mail_check = 10
 set mbox_type = Maildir
 set menu_scroll
 set message_cachedir =~/mail/fastmail/cache/bodies
-set new_mail_command = "notify-send 'new mail'"
+set new_mail_command = "notify-send 'fresh mail'"
 set pager_stop
 set postponed ="Drafts"
 set realname ="Benjamin Simmonds"
@@ -25,7 +25,7 @@ set timeout =0
 set trash ="Trash"
 set use_from =yes
 unmailboxes *
-mailboxes =inbox
+mailboxes =INBOX
 mailboxes ="Archive"
 mailboxes ="Drafts"
 mailboxes ="Trash"
@@ -77,9 +77,9 @@ hdr_order from: to: cc: date: subject: # and in this order
 
 bind index gg first-entry
 macro index o "<shell-escape>mbsync -Va<enter>" "run mailsync"
-macro index,pager gi "<change-folder>=inbox<enter>" "go to inbox"
-macro index,pager Mi "<save-message>=inbox<enter>" "move mail to inbox"
-macro index,pager Ci "<copy-message>=inbox<enter>" "copy mail to inbox"
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index,pager Mi "<save-message>=INBOX<enter>" "move mail to inbox"
+macro index,pager Ci "<copy-message>=INBOX<enter>" "copy mail to inbox"
 macro index,pager ga "<change-folder>=Archive<enter>" "go to inbox"
 macro index,pager Ma "<save-message>=Archive<enter>" "move mail to archive"
 macro index,pager Ca "<copy-message>=Archive<enter>" "copy mail to archive"
