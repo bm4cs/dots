@@ -7,11 +7,9 @@ SSLType IMAPS
 SSLVersion TLSv1.2
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 
-
-# THEN WE SPECIFY THE LOCAL AND REMOTE STORAGE
-# - THE REMOTE STORAGE IS WHERE WE GET THE MAIL FROM (E.G., THE
-#   SPECIFICATION OF AN IMAP ACCOUNT)
-# - THE LOCAL STORAGE IS WHERE WE STORE THE EMAIL ON OUR COMPUTER
+# SPECIFY THE LOCAL AND REMOTE STORAGE
+# THE REMOTE STORAGE IS WHERE TO FETCH THE MAIL FROM
+# THE LOCAL STORAGE IS WHERE THE MAIL IS STORED ON THIS COMPUTER
 
 # REMOTE STORAGE (USE THE IMAP ACCOUNT SPECIFIED ABOVE)
 
@@ -25,21 +23,7 @@ Subfolders Verbatim
 Path ~/mail/fastmail/
 Inbox ~/mail/fastmail/INBOX
 
-Channel fastmail
-Master :fmail-remote:
-Slave :fmail-local:
-Patterns *
-Expunge Both
-CopyArrivalDate yes
-Sync All
-Create Slave
-#MaxMessages 200
-SyncState *
-
-
-
 # CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
-#
 # CONNECTIONS ARE SPECIFIED USING PATTERNS, WHICH MATCH REMOTE MAIl
 # FOLDERS. SOME COMMONLY USED PATTERS INCLUDE:
 #
@@ -51,7 +35,7 @@ SyncState *
 Channel fmail-inbox
 Master :fmail-remote:
 Slave :fmail-local:
-Patterns *
+Patterns INBOX
 Create Slave
 Sync All
 Expunge Both

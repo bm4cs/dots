@@ -11,26 +11,18 @@ set new_mail_command = "notify-send 'fresh mail'"
 set pager_stop
 set postponed ="Drafts"
 set realname ="Benjamin Simmonds"
-set record ="Sent"
+set record = +Sent
 set signature ="~/.config/neomutt/signature"
 set smtp_pass =`pass show fastmail | head -n 1`
 set smtp_url =smtp://ben@bencode.io@smtp.fastmail.com:587/"
-set sort =threads
-set sort_aux =reverse-last-date-received
-set sort_re
-set spoolfile =+inbox
+set spoolfile =+INBOX
 set ssl_force_tls =yes
 set ssl_starttls =yes
 set timeout =0
-set trash ="Trash"
+set trash = +Trash
 set use_from =yes
 unmailboxes *
-mailboxes =INBOX
-mailboxes ="Archive"
-mailboxes ="Drafts"
-mailboxes ="Trash"
-mailboxes ="Sent"
-
+mailboxes "=Sent" "=Archive" "=Drafts" "=Trash" "=INBOX"
 
 # General stuff
 set text_flowed
@@ -51,7 +43,7 @@ bind index _ collapse-all
 bind pager <down> next-line"
 bind pager <up> previous-line #scroll inside the message rather than the index
 
-set sort     = threads
+#set sort     = threads
 set sort_aux = reverse-last-date-received
 set sort_re
 bind index - collapse-thread

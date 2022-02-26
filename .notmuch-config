@@ -1,0 +1,20 @@
+[database]
+path=/home/ben/mail
+
+[user]
+name=Benjamin Simmonds
+primary_email=ben@bencode.io
+other_email=ben@bencode.net;
+
+[new]
+tags=unread;inbox;
+ignore=
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true
+
+[crypto]
+gpg_path=gpg
