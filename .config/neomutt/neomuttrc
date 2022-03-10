@@ -44,8 +44,8 @@ bind index _ collapse-all
 bind pager <down> next-line"
 bind pager <up> previous-line #scroll inside the message rather than the index
 
-set sort     = reverse-date-received
-#set sort     = threads
+#set sort     = reverse-date-received
+set sort     = threads
 set sort_aux = reverse-last-date-received
 #set sort_re
 bind index - collapse-thread
@@ -92,9 +92,10 @@ macro index,pager Cj "<copy-message>=Spam<enter>" "copy mail to junk"
 
 set mailcap_path 	= ~/.config/neomutt/mailcap
 #set date_format		="%H:%M   %a %d %b   (%Y)"
-set date_format     ="%y/%m/%d %I:%M%p"
-set display_filter 	= "~/bin/email_dates" # format times as local
-set index_format	="%5C   %zs %?X?A& ?    %-40.40s    %-20.20F   (%e/%E) %>  %D  "
+#set date_format     ="%y/%m/%d %I:%M%p" #can mess with standard date format in replies
+#set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
+set index_format="%5C %zs %?X?A& ? %-40.40s %-20.20F %> %D "  #hexdsl
+#set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac" # Suppress autoview messages.
 set query_command 	= "abook --mutt-query '%s'"
 set rfc2047_parameters = yes
 set sleep_time 		= 0		# Pause 0 seconds for informational messages
