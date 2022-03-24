@@ -9,7 +9,7 @@ set menu_scroll
 set message_cachedir =~/mail/fastmail/cache/bodies
 #set new_mail_command = "notify-send 'fresh mail'"
 set pager_stop
-set postponed ="Drafts"
+set postponed = +Drafts
 set realname ="Benjamin Simmonds"
 set record = +Sent
 #set signature ="~/.config/neomutt/signature"
@@ -95,6 +95,7 @@ set mailcap_path 	= ~/.config/neomutt/mailcap
 #set date_format     ="%y/%m/%d %I:%M%p" #can mess with standard date format in replies
 #set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
 set index_format="%5C %zs %?X?A& ? %-40.40s %-20.20F %> %D "  #hexdsl
+set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %a, %d %b %Y %H:%M:%S %z' -d '\\1'/e\""
 #set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac" # Suppress autoview messages.
 set query_command 	= "abook --mutt-query '%s'"
 set rfc2047_parameters = yes
