@@ -1,0 +1,19 @@
+[Default Applications]
+text/html=firefox.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/about=firefox.desktop;
+x-scheme-handler/unknown=firefox.desktop;
+x-scheme-handler/magnet=torrent.desktop;
+application/x-bittorrent=torrent.desktop;
+x-scheme-handler/mailto=mail.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+text/plain=text.desktop;
+text/conf=text.desktop;
+text/log=text.desktop;
+text/x-shellscript=text.desktop;
+application/pdf=pdf.desktop;
+application/postscript=pdf.desktop;
+
