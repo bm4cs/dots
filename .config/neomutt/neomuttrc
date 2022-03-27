@@ -1,41 +1,33 @@
 # account setup
 set editor= "nvim +':set textwidth=0' +':set wrapmargin=0' +':set wrap'"
-set folder = ~/mail/gmail"
-set from = ben@bencode.net
-set header_cache =~/mail/gmail/cache/headers
+set folder = ~/mail/fastmail"
+set from = ben@bencode.io
+set header_cache =~/mail/fastmail/cache/headers
 set mail_check = 10
 set mbox_type = Maildir
 set menu_scroll
-set message_cachedir =~/mail/gmail/cache/bodies
-set new_mail_command = "notify-send 'new mail'"
+set message_cachedir =~/mail/fastmail/cache/bodies
+#set new_mail_command = "notify-send 'fresh mail'"
 set pager_stop
-set postponed ="+[Gmail]/Drafts"
+set postponed = +Drafts
 set realname ="Benjamin Simmonds"
-set record ="+[Gmail]/Sent Mail"
-set signature ="~/.config/neomutt/signature"
-set smtp_pass =`pass show gmail | head -n 1`
-set smtp_url =smtp://ben@bencode.net@smtp.gmail.com:587/"
-set sort =threads
-set sort_aux =reverse-last-date-received
-set sort_re
-set spoolfile =+Inbox
+set record = +Sent
+#set signature ="~/.config/neomutt/signature"
+set smtp_pass =`pass show fastmail | head -n 1`
+set smtp_url =smtp://ben@bencode.io@smtp.fastmail.com:587/"
+set spoolfile =+INBOX
 set ssl_force_tls =yes
 set ssl_starttls =yes
 set timeout =0
-set trash ="+[Gmail]/Trash"
+set trash = +Trash
 set use_from =yes
 unmailboxes *
-mailboxes =Inbox
-mailboxes ="[Gmail]/All Mail"
-mailboxes ="[Gmail]/Drafts"
-mailboxes ="[Gmail]/Starred"
-mailboxes ="[Gmail]/Trash"
-mailboxes ="[Gmail]/Sent Mail"
-
+mailboxes "=Sent" "=Archive" "=Drafts" "=Trash" "=INBOX"
 
 # General stuff
 set text_flowed
 unset mark_old
+alternates '^ben@bencode.io$|^ben@bencode.net$'   # don't reply-all to myself
 set delete           # don't ask, just do
 unset confirmappend  # don't ask, just do!
 set quit             # don't ask, just do!!
@@ -52,9 +44,10 @@ bind index _ collapse-all
 bind pager <down> next-line"
 bind pager <up> previous-line #scroll inside the message rather than the index
 
+#set sort     = reverse-date-received
 set sort     = threads
 set sort_aux = reverse-last-date-received
-set sort_re
+#set sort_re
 bind index - collapse-thread
 bind index _ collapse-all
 folder-hook . "exec collapse-all"
@@ -78,26 +71,32 @@ hdr_order from: to: cc: date: subject: # and in this order
 
 bind index gg first-entry
 macro index o "<shell-escape>mbsync -Va<enter>" "run mailsync"
-macro index,pager gi "<change-folder>=Inbox<enter>" "go to inbox"
-macro index,pager Mi "<save-message>=Inbox<enter>" "move mail to inbox"
-macro index,pager Ci "<copy-message>=Inbox<enter>" "copy mail to inbox"
-macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "go to inbox"
-macro index,pager Ma "<save-message>=[Gmail]/All Mail<enter>" "move mail to inbox"
-macro index,pager Ca "<copy-message>=[Gmail]/All Mail<enter>" "copy mail to inbox"
-macro index,pager gs "<change-folder>=[Gmail]/Sent Mail<enter>" "go to sent"
-macro index,pager Ms "<save-message>=[Gmail]/Sent Mail<enter>" "move mail to sent"
-macro index,pager Cs "<copy-message>=[Gmail]/Sent Mail<enter>" "copy mail to sent"
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index,pager Mi "<save-message>=INBOX<enter>" "move mail to inbox"
+macro index,pager Ci "<copy-message>=INBOX<enter>" "copy mail to inbox"
+macro index,pager ga "<change-folder>=Archive<enter>" "go to archive"
+macro index,pager Ma "<save-message>=Archive<enter>" "move mail to archive"
+macro index,pager Ca "<copy-message>=Archive<enter>" "copy mail to archive"
+macro index,pager gs "<change-folder>=Sent<enter>" "go to sent"
+macro index,pager Ms "<save-message>=Sent<enter>" "move mail to sent"
+macro index,pager Cs "<copy-message>=Sent<enter>" "copy mail to sent"
 macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
 macro index,pager Md "<save-message>=Drafts<enter>" "move mail to drafts"
 macro index,pager Cd "<copy-message>=Drafts<enter>" "copy mail to drafts"
 macro index,pager gt "<change-folder>=Trash<enter>" "go to trash"
 macro index,pager Mt "<save-message>=Trash<enter>" "move mail to trash"
 macro index,pager Ct "<copy-message>=Trash<enter>" "copy mail to trash"
+macro index,pager gj "<change-folder>=Spam<enter>" "go to junk"
+macro index,pager Mj "<save-message>=Spam<enter>" "move mail to junk"
+macro index,pager Cj "<copy-message>=Spam<enter>" "copy mail to junk"
 
 set mailcap_path 	= ~/.config/neomutt/mailcap
-set date_format		="%H:%M   %a %d %b   (%Y)"
-set display_filter 	= "~/bin/email_dates" # format times as local
-set index_format	="%5C   %zs %?X?A& ?    %-40.40s    %-20.20F   (%e/%E) %>  %D  "
+#set date_format		="%H:%M   %a %d %b   (%Y)"
+#set date_format     ="%y/%m/%d %I:%M%p" #can mess with standard date format in replies
+#set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
+set index_format="%5C %zs %?X?A& ? %-40.40s %-20.20F %> %D "  #hexdsl
+set display_filter="exec sed -r \"s/^Date:\\s*(([F-Wa-u]{3},\\s*)?[[:digit:]]{1,2}\\s+[A-Sa-y]{3}\\s+[[:digit:]]{4}\\s+[[:digit:]]{1,2}:[[:digit:]]{1,2}(:[[:digit:]]{1,2})?\\s+[+-][[:digit:]]{4})/date +'Date: %a, %d %b %Y %H:%M:%S %z' -d '\\1'/e\""
+#set display_filter = "tac | sed '/\\\[-- Autoview/,+1d' | tac" # Suppress autoview messages.
 set query_command 	= "abook --mutt-query '%s'"
 set rfc2047_parameters = yes
 set sleep_time 		= 0		# Pause 0 seconds for informational messages
@@ -149,7 +148,7 @@ bind editor <Tab> complete-query
 macro index,pager a "|abook --add-email\n" 'add sender to abook'
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 macro index O "<shell-escape>mbsync -Va<enter>" "run mbsync to sync all mail"
-macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>read -p 'Enter a search term to find with notmuch: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+macro index \Cf "<enter-command>unset wait_key<enter><shell-escape>printf 'Enter a search term to find with notmuch: '; read x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;s/\^id:// for@a;$,=\"|\";print@a' | perl -le '@a=<>; chomp@a; s/\\+/\\\\+/ for@a;print@a' \`\"<enter>" "show only messages matching a notmuch pattern"
 macro index A "<limit>all\n" "show all messages (undo limit)"
 macro attach 'V' "<pipe-entry>iconv -c --to-code=UTF8 > ~/.cache/mutt/mail.html<enter><shell-escape>firefox ~/.cache/mutt/mail.html<enter>"
 
