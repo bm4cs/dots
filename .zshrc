@@ -15,8 +15,6 @@ plugins=(
   git
   zsh-autosuggestions
   colored-man-pages
-  golang
-  archlinux
   colorize
   sudo
 )
