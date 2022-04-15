@@ -1,0 +1,4 @@
+#!/bin/sh
+
+dev=$(xrandr -q | grep " connected" | cut -d ' ' -f 1)
+xrandr --output $dev --brightness 1
