@@ -26,7 +26,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' } "code formatter
 "Plug 'nvim-lua/popup.nvim' "popup api
 
 " gui enhancements
-Plug 'vim-airline/vim-airline' "status line
 Plug 'morhetz/gruvbox' "colorscheme
 Plug 'machakann/vim-highlightedyank' "pop yanks
 Plug 'andymass/vim-matchup' "extends % lang aware
@@ -182,30 +181,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AIRLINE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-try
-let g:airline_extensions = ['branch', 'hunks', 'coc']
-let g:airline_section_z = airline#section#create(['linenr'])
-let g:airline_skip_empty_sections = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
-let g:NERDTreeStatusline = ''
-let g:airline_exclude_preview = 1
-let g:airline_powerline_fonts = 1
-let g:airline_highlighting_cache = 1
-let g:airline_theme='gruvbox'
-let g:airline#extensions#hunks#enabled=0
-catch
-  echo 'Airline not installed. It should work after running :PlugInstall'
-endtry
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
