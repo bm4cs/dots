@@ -1,0 +1,97 @@
+# base
+zsh
+build-essential
+autoconf
+pkgconfig
+libtool
+locales
+sudo
+git
+ssh
+rsync
+neovim
+tmux
+manpages-dev
+unzip
+tree
+fuse
+neofetch
+gnupg
+
+# networking
+network-manager
+openvpn
+
+# graphical
+xserver-xorg-video-amdgpu
+firmware-amd-graphics
+xorg
+maim
+sxiv
+xautolock
+feh
+fonts-noto
+
+# mail
+neomutt
+isync
+msmtp
+lynx
+pass
+
+# notifications
+dunst
+libnotify-bin
+
+# media
+pulseaudio
+pulseaudio-utils
+pulsemixer
+mpv
+mpd
+ncmpcpp
+ffmpeg
+mupdf
+pdfgrep
+
+# web
+firefox-esr
+
+# packaging
+snapd
+docker.io
+
+# kvm - usermod -aG and newgrp to libvirt group after installs
+qemu-system
+libvirt-clients
+libvirt-daemon-system
+virt-manager
+
+# suckless build deps
+libx11-dev
+libxft-dev
+libfreetype6-dev
+libfontconfig1-dev
+libxinerama-dev
+libxrandr-dev
+xclip
+
+# nnn build deps
+pkg-config
+libncursesw5-dev
+libreadline-dev
+
+# for desktop
+# nodejs - sudo snap install node --classic
+# nnn - make install
+# dotnet - sudo snap install dotnet-sdk --classic --channel=5.0
+# chrome - sudo apt install ./google-chrome-stable_current_amd64.deb
+# vscode - sudo apt install ./code_1.58.0-1625728071_amd64.deb
+
+# for server (headless)
+tuned
+tuned-utils
+
+# for laptops
+upower
+
