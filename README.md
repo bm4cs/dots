@@ -2,18 +2,17 @@
 
 Configuration for the _daily driver_ programs I use.
 
-These consist of programs that optimise my specific computer usage workflows as a software developer, security researcher and terminal nerd.
+These consist of programs that optimise my specific computer usage workflows as a software engineer, security researcher and terminal nerd.
 
 My setup is quite opionated:
 
-* its minimalist and elistist
-* use gentoo, arch and debian
-* no desktop environment (DE)
-* uses a tiler (tiling window manager) called `dwm`
-* suckless programs where possible
-* vim key bindings everywhere
-* neovim is my editor
-* esoteric key bindings (thx to ErgoDox EZ)
+-   Its minimalist
+-   Terminal where possible such as [suckless](https://suckless.org/)
+-   Prefer a BSD or a lean Linux distro
+-   No bloated desktop environment (DE)
+-   Use a tiling window manager (WM) over bloated desktop environments (DE)
+-   `vi` keys everywhere
+-   `neovim` is my editor
 
 ## Setup
 
@@ -49,7 +48,4 @@ Carefully stage and commit individual files as needed.
 
 Before `:PlugInstall` some dependencies:
 
-- `node` for coc
-- `yarn` for prettier
-- `pip3` and the `neovim` python module, for denite
-
+-   `yarn` for prettier
