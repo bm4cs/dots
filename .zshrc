@@ -27,7 +27,7 @@ export LANG=en_US.UTF-8
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
-[[ -e ~/.bash_aliases ]] && emulate sh -c 'source ~/.bash_aliases'
+[[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
 #ctrl-r shell history drop-in
 eval "$(mcfly init zsh)" 
