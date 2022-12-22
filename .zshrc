@@ -2,7 +2,6 @@ LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
 export ZSH="/home/ben/.oh-my-zsh"
-ZSH_THEME="spaceship"
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
@@ -29,8 +28,11 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
+#curl -sS https://starship.rs/install.sh | sh
+eval "$(starship init zsh)"
+
 #ctrl-r shell history drop-in
-eval "$(mcfly init zsh)" 
+#eval "$(mcfly init zsh)" 
 
 #hackersascii | lolcat
 unix # rip dennis ritchie
