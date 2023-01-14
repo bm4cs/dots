@@ -7,3 +7,6 @@ lsp.ensure_installed({
 })
 
 lsp.setup()
+
+vim.opt.signcolumn = 'yes'
+
