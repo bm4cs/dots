@@ -10,7 +10,7 @@ My setup is quite opionated:
 -   Terminal where possible such as [suckless](https://suckless.org/)
 -   Prefer a BSD or a lean Linux distro
 -   No bloated desktop environment (DE)
--   Use a tiling window manager (WM) over bloated desktop environments (DE)
+-   Use a tiling window manager aka a tiler
 -   `vi` keys everywhere
 -   `neovim` is my editor
 
@@ -19,7 +19,7 @@ My setup is quite opionated:
 Clone as a bare repo (i.e without a `.git` subdir):
 
 ```
-git clone --bare git@github.com:bm4cs/dots-home.git $HOME/.dots
+git clone --bare git@github.com:bm4cs/dots.git $HOME/.dots
 alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 dots checkout
 ```
@@ -38,14 +38,6 @@ dots config --local status.showUntrackedFiles no
 alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 ```
 
-Use the `dots` alias, and not the default `git` command.
+Use the `dots` alias instead of the default `git` command.
 
 Carefully stage and commit individual files as needed.
-
-# Gotchas
-
-## neovim
-
-Before `:PlugInstall` some dependencies:
-
--   `yarn` for prettier
