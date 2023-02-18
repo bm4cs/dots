@@ -1,2 +1,2 @@
-require("bsimmonds.remap")
+require("bsimmonds.keymap")
 require("bsimmonds.set")

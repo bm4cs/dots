@@ -7,11 +7,17 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- Fuzzy finder
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' } }
+    requires = { {
+        'nvim-lua/plenary.nvim',
+        'BurntSushi/ripgrep'
+      } 
+    }
   }
 
+  -- Colorscheme
   use({
     'catppuccin/nvim',
     as = 'catppuccin',
@@ -20,18 +26,35 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- Intelligent syntax support
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  use('ThePrimeagen/harpoon')
-  use('mbbill/undotree')
+
+  -- Keep most regularly used files close
+  --use('ThePrimeagen/harpoon')
+
+  -- Historic buffers
+  --use('mbbill/undotree')
+
+  -- Git
   use('tpope/vim-fugitive')
+
+  -- Git signs in the gutter
   use('lewis6991/gitsigns.nvim')
 
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  -- Fancier statusline
+  use 'nvim-lualine/lualine.nvim'
 
-  use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
+  -- Add indentation guides even on blank lines
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  -- "gc" to comment visual regions/lines
+  use 'numToStr/Comment.nvim'
+
+  -- Detect tabstop and shiftwidth automatically
+  use 'tpope/vim-sleuth'
+
+  -- File browsing
+  use 'nvim-telescope/telescope-file-browser.nvim'
 
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -56,33 +79,50 @@ return require('packer').startup(function(use)
     }
   }
 
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-      require("which-key").setup {
+  -- 
+  use({
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+      config = function()
+        require("lspsaga").setup({})
+      end,
+      requires = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}
       }
+    })
+
+  -- git diff
+  use 'sindrets/diffview.nvim'
+
+  -- devicons
+  use 'kyazdani42/nvim-web-devicons'
+
+  -- Language packs
+  use 'sheerun/vim-polyglot'
+
+  -- neovim motions
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require 'hop'.setup { keys = 'etovxpqdgfblzhckisuran' }
     end
   }
 
+  -- Pretty diagnostics, references, telescope results, quickfix and location list
+  use 'folke/trouble.nvim'
 
-  use 'simrat39/rust-tools.nvim'
 
-  -- Debugging
-  use {
-    "mfussenegger/nvim-dap",
-    wants = { "nvim-dap-virtual-text", "nvim-dap-ui", "which-key.nvim" },
-    requires = {
-      "theHamsta/nvim-dap-virtual-text",
-      "rcarriga/nvim-dap-ui",
-      "nvim-telescope/telescope-dap.nvim",
-    },
-    config = function()
-      print("TODO configure DAP")
-      require("bsimmonds.dap").setup()
-    end,
-  }
+
+  --fullstack dev
+  use 'pangloss/vim-javascript' --JS support
+  use 'leafgarland/typescript-vim' --TS support
+  use 'maxmellon/vim-jsx-pretty' --JS and JSX syntax
+  use 'jparise/vim-graphql' --GraphQL syntax
+  use 'mattn/emmet-vim'
 
   --TODO: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
   --TODO: https://github.com/simrat39/dotfiles/blob/master/nvim/.config/nvim/lua/plugins.lua
