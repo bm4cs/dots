@@ -1,8 +1,9 @@
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-export ZSH="/home/ben/.oh-my-zsh"
+export ZSH="~/.oh-my-zsh"
 
+ZSH_THEME="agnoster"
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 #DISABLE_UNTRACKED_FILES_DIRTY="true"
@@ -11,6 +12,7 @@ DEFAULT_USER=$(whoami)
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
+  emoji
   git
   zsh-autosuggestions
   colored-man-pages
@@ -29,7 +31,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
 #curl -sS https://starship.rs/install.sh | sh
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 #ctrl-r shell history drop-in
 #eval "$(mcfly init zsh)" 
@@ -40,4 +42,5 @@ unix # rip dennis ritchie
 #if [ -x "$(command -v neofetch)" ]; then
 #    neofetch
 #fi
+
 

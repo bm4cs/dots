@@ -15,10 +15,17 @@ export FILE="nnn"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # langs
-source "$HOME/.cargo/env"
 export GOBIN=$HOME/go/bin
 export GOPATH=$HOME/go
+[ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
 [ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
+export NODE_OPTIONS=--max-old-space-size=4096
+
+# node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -d "$HOME/.nvim/versions/node/v16.19.1" ] && source '/home/ben/.nvm/versions/node/v16.19.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
 # make qt apps look good on i3 hours wasted: 3
 export QT_STYLE_OVERRIDE=adwaita
@@ -83,4 +90,5 @@ function extract {
 if [ -x "$(command -v dwm)" ]; then
     [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 fi
+
 
