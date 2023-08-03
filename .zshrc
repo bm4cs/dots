@@ -15,6 +15,9 @@ plugins=(
   emoji
   git
   zsh-autosuggestions
+  zsh-syntax-highlighting
+  fast-syntax-highlighting
+  zsh-autocomplete
   colored-man-pages
   colorize
   sudo
@@ -34,7 +37,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 #eval "$(starship init zsh)"
 
 #ctrl-r shell history drop-in
-#eval "$(mcfly init zsh)" 
+eval "$(mcfly init zsh)" 
 
 #hackersascii | lolcat
 unix # rip dennis ritchie

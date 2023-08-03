@@ -27,10 +27,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -d "$HOME/.nvim/versions/node/v16.19.1" ] && source '/home/ben/.nvm/versions/node/v16.19.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
 
-# make qt apps look good on i3 hours wasted: 3
-export QT_STYLE_OVERRIDE=adwaita
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
+if [ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
 
 # music player daemon
 if [ -x "$(command -v mpd)" ]; then
@@ -90,5 +87,4 @@ function extract {
 if [ -x "$(command -v dwm)" ]; then
     [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 fi
-
 
