@@ -7,12 +7,13 @@ These consist of programs that optimise my specific computer usage workflows as 
 My setup is quite opionated:
 
 -   Its minimalist
--   Terminal where possible such as [suckless](https://suckless.org/)
--   Prefer a BSD or a lean Linux distro
+-   Terminal tools where possible like [suckless](https://suckless.org/)
+-   Prefer a BSD or a lean arch-like Linux distro
 -   No bloated desktop environment (DE)
 -   Use a tiling window manager aka a tiler
--   `vi` keys everywhere
--   `neovim` is my editor
+-   `vi` key binds everywhere
+-   `neovim` as editor
+-   `zsh` as shell
 
 ## Setup
 
@@ -41,3 +42,5 @@ alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 Use the `dots` alias instead of the default `git` command.
 
 Carefully stage and commit individual files as needed.
+
+

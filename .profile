@@ -17,21 +17,20 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # langs
 export GOBIN=$HOME/go/bin
 export GOPATH=$HOME/go
-[ -d "$HOME/.cargo" ] && source "$HOME/.cargo/env"
-[ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
 export NODE_OPTIONS=--max-old-space-size=4096
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+[ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
 
 # node
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-[ -d "$HOME/.nvim/versions/node/v16.19.1" ] && source '/home/ben/.nvm/versions/node/v16.19.1/lib/node_modules/@hyperupcall/autoenv/activate.sh'
-
-if [ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
+[ -d "$HOME/.nvim/versions/node/v16.19.1" ] && source '/home/ben/.nvm/versions/node/v16.19.1/lib/node_modules/@hyperupcall/autoenv/activate.sh';
+[ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts";
 
 # music player daemon
 if [ -x "$(command -v mpd)" ]; then
-	[ ! -s ~/.config/mpd/pid ] && mpd
+    [ ! -s ~/.config/mpd/pid ] && mpd
 fi
 
 n ()
@@ -87,4 +86,3 @@ function extract {
 if [ -x "$(command -v dwm)" ]; then
     [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 fi
-

@@ -21,7 +21,7 @@ alias v="$EDITOR"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias x="sxiv -ft *"
-alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
+alias yt="yt-dlp --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
 alias yta="yt -x -f bestaudio/best"
 
 # programming
