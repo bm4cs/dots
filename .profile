@@ -1,7 +1,7 @@
 # if not running interactively, gtfo
 [[ $- != *i* ]] && return
 
-export PATH="$PATH:$GOPATH/bin:$:$HOME/.cargo/bin:/snap/bin"
+export PATH="$PATH::$HOME/.cargo/bin:/snap/bin"
 
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
@@ -25,7 +25,8 @@ export NODE_OPTIONS=--max-old-space-size=4096
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
-[ -d "$HOME/.nvim/versions/node/v16.19.1" ] && source '/home/ben/.nvm/versions/node/v16.19.1/lib/node_modules/@hyperupcall/autoenv/activate.sh';
+
+# jetbrains
 [ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts";
 
 # music player daemon
@@ -86,3 +87,4 @@ function extract {
 if [ -x "$(command -v dwm)" ]; then
     [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
 fi
+
