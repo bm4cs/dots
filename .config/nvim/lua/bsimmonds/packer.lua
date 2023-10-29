@@ -117,12 +117,12 @@ return require('packer').startup(function(use)
 
 
 
-  --fullstack dev
-  use 'pangloss/vim-javascript' --JS support
-  use 'leafgarland/typescript-vim' --TS support
-  use 'maxmellon/vim-jsx-pretty' --JS and JSX syntax
-  use 'jparise/vim-graphql' --GraphQL syntax
-  use 'mattn/emmet-vim'
+  -- frontend dev
+  -- use 'pangloss/vim-javascript' --JS support
+  -- use 'leafgarland/typescript-vim' --TS support
+  -- use 'maxmellon/vim-jsx-pretty' --JS and JSX syntax
+  -- use 'jparise/vim-graphql' --GraphQL syntax
+  -- use 'mattn/emmet-vim'
 
   --TODO: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
   --TODO: https://github.com/simrat39/dotfiles/blob/master/nvim/.config/nvim/lua/plugins.lua
