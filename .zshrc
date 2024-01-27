@@ -36,9 +36,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 #curl -sS https://starship.rs/install.sh | sh
 #eval "$(starship init zsh)"
 
-#ctrl-r shell history drop-in
-eval "$(mcfly init zsh)" 
-
 #hackersascii | lolcat
 unix # rip dennis ritchie
 
