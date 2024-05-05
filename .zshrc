@@ -21,7 +21,9 @@ plugins=(
   colored-man-pages
   colorize
   sudo
+  poetry
 )
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -44,3 +46,10 @@ unix # rip dennis ritchie
 #fi
 
 
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+source <(kubectl completion zsh)
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
