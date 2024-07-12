@@ -1,10 +1,10 @@
 # if not running interactively, gtfo
 [[ $- != *i* ]] && return
 
-export PATH="$PATH::$HOME/.cargo/bin:/snap/bin"
-
+export PATH="$PATH:$HOME/.cargo/bin:/snap/bin"
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.yarn/bin" ] && PATH="$HOME/.yarn/bin:$PATH"
 
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
@@ -14,20 +14,25 @@ export READER="mupdf"
 export FILE="nnn"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# langs
+# rust
+. "$HOME/.cargo/env"
+
+# go
 export GOBIN=$HOME/go/bin
 export GOPATH=$HOME/go
-export NODE_OPTIONS=--max-old-space-size=4096
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 [ -d "/usr/local/go/bin" ] && PATH="/usr/local/go/bin:$PATH"
 
 # node
+export NODE_OPTIONS=--max-old-space-size=4096
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
 
 # jetbrains
-[ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts";
+#[ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts";
+
+# envman
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # music player daemon
 if [ -x "$(command -v mpd)" ]; then

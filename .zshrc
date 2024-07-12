@@ -21,29 +21,33 @@ plugins=(
   colored-man-pages
   colorize
   sudo
+  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# user configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# keep using bash configs
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 [[ -e ~/.aliases ]] && emulate sh -c 'source ~/.aliases'
 
-#curl -sS https://starship.rs/install.sh | sh
-#eval "$(starship init zsh)"
+# prompt
+eval "$(starship init zsh)"
 
-#ctrl-r shell history drop-in
-eval "$(mcfly init zsh)" 
+# pretty splash
+if [ -x "$(command -v neofetch)" ]; then
+    neofetch
+else
+    #hackersascii | lolcat
+    unix # rip dennis ritchie
+fi
 
-#hackersascii | lolcat
-unix # rip dennis ritchie
-
-#if [ -x "$(command -v neofetch)" ]; then
-#    neofetch
-#fi
-
+# better autocomplete
+source <(kubectl completion zsh)
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
 
