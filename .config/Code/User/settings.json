@@ -18,12 +18,12 @@
     "editor.cursorBlinking": "solid",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorStyle": "line",
-    "editor.fontSize": 14,
-    "editor.fontFamily": "'CaskaydiaCove Nerd Font', 'JetBrainsMono Nerd Font Mono', 'EnvyCodeR Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontFamily": "'Dank Mono', 'CaskaydiaCove Nerd Font', 'JetBrainsMono Nerd Font Mono', monospace",
     "editor.fontLigatures": false,
+    "editor.fontSize": 16,
     "editor.formatOnPaste": true,
-    "editor.formatOnType": false,
     "editor.formatOnSave": true,
+    "editor.formatOnType": false,
     "editor.letterSpacing": 0.3,
     "editor.lineHeight": 25,
     "editor.minimap.enabled": false,
@@ -32,10 +32,13 @@
     "editor.tabCompletion": "on",
     "editor.tabSize": 2,
     "editor.wordWrap": "on",
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 1000,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "Modelfile": "plaintext"
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
     "python.analysis.autoFormatStrings": true,
     "python.analysis.autoImportCompletions": true,
     "python.analysis.completeFunctionParens": true,
@@ -49,13 +52,11 @@
     "ruff.lint.args": [
         "\"--config=~/git/buddies/pyproject.toml\""
     ],
-    "terminal.integrated.fontSize": 12,
-    "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.sideBar.location": "right",
     "security.workspace.trust.untrustedFiles": "open",
     "terminal.integrated.enableMultiLinePasteWarning": false,
-    "files.associations": {
-        "Modelfile": "plaintext"
-    }
+    "terminal.integrated.fontFamily": "'CaskaydiaCove Nerd Font', 'JetBrainsMono Nerd Font Mono', monospace",
+    "terminal.integrated.fontSize": 12,
+    "workbench.colorTheme": "Winter is Coming (Dark Blue)",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.sideBar.location": "right"
 }

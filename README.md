@@ -19,7 +19,7 @@ My setup is quite opionated:
 
 Clone as a bare repo (i.e without a `.git` subdir):
 
-```
+```sh
 git clone --bare git@github.com:bm4cs/dots.git $HOME/.dots
 alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 dots checkout
@@ -27,15 +27,15 @@ dots checkout
 
 After clone, disable showing untracked files, else this will show everything in $HOME:
 
-```
+```sh
 dots config --local status.showUntrackedFiles no
 ```
 
 ## Usage
 
-`.bash_aliases` includes the following alias:
+`~/.aliases` includes the following:
 
-```
+```sh
 alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 ```
 
@@ -43,4 +43,15 @@ Use the `dots` alias instead of the default `git` command.
 
 Carefully stage and commit individual files as needed.
 
+## Post install
+
+If setting up a new box:
+
+```sh
+sudo apt install git tmux zsh curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+chsh -s $(which zsh)
+bash -c "$(wget -qO- https://git.io/vQgMr)"
+./scripts/zsh/install-plugins.sh
+```
 
