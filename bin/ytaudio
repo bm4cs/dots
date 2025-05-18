@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+SCRIPT_NAME=$(basename "$0")
+AUDIO_FORMAT="opus"
+OUTPUT_TEMPLATE="%(uploader)s - %(title)s.%(ext)s"
+
+usage() {
+    echo "Usage: $SCRIPT_NAME [OPTIONS] URL"
+    echo "Download audio from YouTube"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help        Show this help message"
+    echo "  -f, --format      Audio format (default: $DEFAULT_AUDIO_FORMAT)"
+    echo "  -o, --output      Output filename template (default: '$OUTPUT_TEMPLATE')"
+    exit 1
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help)
+            usage
+            ;;
+        -f|--format)
+            AUDIO_FORMAT="$2"
+            shift 2
+            ;;
+        -o|--output)
+            OUTPUT_TEMPLATE="$2"
+            shift 2
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+if [ $# -eq 0 ] || [ ! -z "$1" ] && [ "${1:0:1}" == "-" ]; then
+    echo "Error: URL is required" >&2
+    usage
+fi
+
+URL="${1:-}"
+
+if ! command -v yt-dlp &>/dev/null; then
+    echo "Error: yt-dlp is not installed or not found in PATH" >&2
+    exit 1
+fi
+
+yt-dlp -x \
+    --audio-format "$AUDIO_FORMAT" \
+    --embed-thumbnail \
+    --embed-metadata \
+    -o "$OUTPUT_TEMPLATE" \
+    "$URL"
+
