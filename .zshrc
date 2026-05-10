@@ -21,7 +21,6 @@ plugins=(
   colored-man-pages
   colorize
   sudo
-  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -42,12 +41,16 @@ eval "$(starship init zsh)"
 if [ -x "$(command -v neofetch)" ]; then
     neofetch
 else
-    #hackersascii | lolcat
-    unix # rip dennis ritchie
+    hackersascii | lolcat
+    #unix # rip dennis ritchie
 fi
 
 # better autocomplete
-source <(kubectl completion zsh)
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/bms/.pulumi/bin
+
+# zoxide - better cd
+eval "$(zoxide init zsh)"
 
