@@ -3,24 +3,19 @@ LC_ALL=en_US.UTF-8
 
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="agnoster"
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-#DISABLE_UNTRACKED_FILES_DIRTY="true"
+# starship handles the prompt; no oh-my-zsh theme needed
+ZSH_THEME=""
 DEFAULT_USER=$(whoami)
 
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# fast-syntax-highlighting must be sourced LAST
 plugins=(
-  emoji
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  fast-syntax-highlighting
-  zsh-autocomplete
-  colored-man-pages
-  colorize
   sudo
+  colored-man-pages
+  zsh-autosuggestions
+  fast-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -37,20 +32,8 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # prompt
 eval "$(starship init zsh)"
 
-# pretty splash
-if [ -x "$(command -v neofetch)" ]; then
-    neofetch
-else
-    hackersascii | lolcat
-    #unix # rip dennis ritchie
-fi
-
-# better autocomplete
-autoload -U +X bashcompinit && bashcompinit
-
 # add Pulumi to the PATH
 export PATH=$PATH:/home/bms/.pulumi/bin
 
 # zoxide - better cd
 eval "$(zoxide init zsh)"
-
