@@ -12,6 +12,7 @@ export TERMINAL="st"
 export BROWSER="firefox"
 export READER="mupdf"
 export FILE="nnn"
+export ZSH_CUSTOM="$HOME/.zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # rust
@@ -25,8 +26,8 @@ export GOPATH=$HOME/go
 # node
 export NODE_OPTIONS=--max-old-space-size=4096
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh";  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion";  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -n "$BASH_VERSION" ] && [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion (bash only)
 
 # jetbrains
 #[ -d "$HOME/.local/share/JetBrains/Toolbox" ] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts";
@@ -39,7 +40,7 @@ if [ -x "$(command -v mpd)" ]; then
     [ ! -s ~/.config/mpd/pid ] && mpd
 fi
 
-n ()
+n()
 {
     # block nesting of nnn in subshells
     if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
@@ -89,7 +90,8 @@ function extract {
 }
 
 # start dwm if not already running
-if [ -x "$(command -v dwm)" ]; then
-    [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
-fi
+#if [ -x "$(command -v dwm)" ]; then
+#    [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+#fi
 
+. "$HOME/.local/bin/env"
